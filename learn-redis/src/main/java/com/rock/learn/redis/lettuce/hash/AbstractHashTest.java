@@ -3,10 +3,8 @@ package com.rock.learn.redis.lettuce.hash;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.async.RedisHashAsyncCommands;
-import io.lettuce.core.api.async.RedisListAsyncCommands;
 import io.lettuce.core.api.sync.RedisHashCommands;
 import io.lettuce.core.api.sync.RedisKeyCommands;
-import io.lettuce.core.api.sync.RedisListCommands;
 
 import java.io.IOException;
 import java.util.Properties;

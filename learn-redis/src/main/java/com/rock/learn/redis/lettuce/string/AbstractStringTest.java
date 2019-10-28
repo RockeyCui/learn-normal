@@ -3,6 +3,7 @@ package com.rock.learn.redis.lettuce.string;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.api.StatefulRedisConnection;
 import io.lettuce.core.api.async.RedisAsyncCommands;
+import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.api.sync.RedisKeyCommands;
 import io.lettuce.core.api.sync.RedisStringCommands;
 
@@ -16,7 +17,8 @@ import java.util.Properties;
 public abstract class AbstractStringTest {
     protected static RedisClient redisClient;
     protected static StatefulRedisConnection<String, String> connection;
-    protected static RedisStringCommands<String, String> commands;
+    protected static RedisCommands<String, String> commands;
+    protected static RedisStringCommands<String, String> stringCommands;
     protected static RedisAsyncCommands<String, String> asyncCommands;
     protected static RedisKeyCommands<String, String> keyCommands;
 
@@ -29,6 +31,7 @@ public abstract class AbstractStringTest {
         }
         redisClient = RedisClient.create(properties.getProperty("redis.address"));
         connection = redisClient.connect();
+        stringCommands = connection.sync();
         commands = connection.sync();
         asyncCommands = connection.async();
         keyCommands = connection.sync();

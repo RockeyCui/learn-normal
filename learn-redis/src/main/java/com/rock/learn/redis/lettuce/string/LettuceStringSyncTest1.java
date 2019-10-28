@@ -13,10 +13,10 @@ public class LettuceStringSyncTest1 extends AbstractStringTest {
     public static void main(String[] args) throws InterruptedException {
         //set
         System.out.println("set");
-        System.out.println(commands.set("rock", "rock"));
+        System.out.println(stringCommands.set("rock", "rock"));
         //get
         System.out.println("get");
-        System.out.println(commands.get("rock"));
+        System.out.println(stringCommands.get("rock"));
         //del
         System.out.println("del");
         System.out.println(keyCommands.del("rock"));
@@ -25,24 +25,24 @@ public class LettuceStringSyncTest1 extends AbstractStringTest {
         System.out.println(keyCommands.del("notExist"));
         //setnx
         System.out.println("setnx");
-        System.out.println(commands.setnx("nx", "value1"));
-        System.out.println(commands.setnx("nx", "value2"));
+        System.out.println(stringCommands.setnx("nx", "value1"));
+        System.out.println(stringCommands.setnx("nx", "value2"));
         //expect value1
-        System.out.println(commands.get("nx"));
+        System.out.println(stringCommands.get("nx"));
         //set xx
         //expect fail
         System.out.println("set xx");
-        System.out.println(commands.set("xx", "xxx", new SetArgs().xx()));
+        System.out.println(stringCommands.set("xx", "xxx", new SetArgs().xx()));
         //getset
-        commands.set("getset", "oldValue");
+        stringCommands.set("getset", "oldValue");
         System.out.println("getset");
-        System.out.println(commands.getset("getset", "newValue"));
+        System.out.println(stringCommands.getset("getset", "newValue"));
         //setex
         System.out.println("setex");
-        commands.setex("rock", 2, "rock");
+        stringCommands.setex("rock", 2, "rock");
         sleep(3000);
         //expect null
-        System.out.println(commands.get("rock"));
+        System.out.println(stringCommands.get("rock"));
 
         connection.close();
         redisClient.shutdown();
