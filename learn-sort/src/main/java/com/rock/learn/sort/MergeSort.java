@@ -31,7 +31,7 @@ public class MergeSort extends AbstractSort {
         int[] merge = new int[size];
         //left 遍历索引
         int l = 0;
-        //right 便理索引
+        //right 遍历索引
         int r = 0;
         //merge 索引
         int m = 0;
