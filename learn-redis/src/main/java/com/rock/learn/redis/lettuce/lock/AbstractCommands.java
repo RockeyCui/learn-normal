@@ -1,23 +1,24 @@
-package com.rock.learn.redis.lettuce.list;
+package com.rock.learn.redis.lettuce.lock;
 
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.api.StatefulRedisConnection;
-import io.lettuce.core.api.async.RedisListAsyncCommands;
+import io.lettuce.core.api.async.RedisAsyncCommands;
+import io.lettuce.core.api.sync.RedisCommands;
 import io.lettuce.core.api.sync.RedisKeyCommands;
-import io.lettuce.core.api.sync.RedisListCommands;
+import io.lettuce.core.api.sync.RedisStringCommands;
 
 import java.io.IOException;
 import java.util.Properties;
 
 /**
  * @author cuishilei
- * @date 2019/9/19
  */
-public abstract class AbstractListTest {
+public abstract class AbstractCommands {
     protected static RedisClient redisClient;
     protected static StatefulRedisConnection<String, String> connection;
-    protected static RedisListCommands<String, String> commands;
-    protected static RedisListAsyncCommands<String, String> asyncCommands;
+    protected static RedisCommands<String, String> commands;
+    protected static RedisStringCommands<String, String> stringCommands;
+    protected static RedisAsyncCommands<String, String> asyncCommands;
     protected static RedisKeyCommands<String, String> keyCommands;
 
     static {
@@ -29,6 +30,7 @@ public abstract class AbstractListTest {
         }
         redisClient = RedisClient.create(properties.getProperty("redis.address"));
         connection = redisClient.connect();
+        stringCommands = connection.sync();
         commands = connection.sync();
         asyncCommands = connection.async();
         keyCommands = connection.sync();

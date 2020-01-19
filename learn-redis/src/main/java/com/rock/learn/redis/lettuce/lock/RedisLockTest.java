@@ -1,7 +1,5 @@
 package com.rock.learn.redis.lettuce.lock;
 
-import com.rock.learn.redis.lettuce.string.AbstractStringTest;
-
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -11,9 +9,8 @@ import static java.lang.Thread.sleep;
 
 /**
  * @author cuishilei
- * @date 2019/10/12
  */
-public class RedisLockTest extends AbstractStringTest {
+public class RedisLockTest extends AbstractCommands {
     private final static ConcurrentMap<Thread, AtomicInteger> THREAD_DATA = new ConcurrentHashMap<>();
 
     public static void main(String[] args) {
